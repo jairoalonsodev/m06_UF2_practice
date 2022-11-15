@@ -9,7 +9,7 @@ $(document).ready(function () {
     $("#amount").focusout(() => {
         validateAmount()
     })
-    $(function() {
+    $(function () {
         $("#datepicker").datepicker();
         $("#datepicker2").datepicker();
         $("#datepicker3").datepicker();
@@ -29,30 +29,30 @@ $(document).ready(function () {
 
 function createAccountTypesOptions() {
     var selectValues = {
-        1 : "Savings account",
-        2 : "Investement account",
-        3 : "Personal account",
-        4 : "Solidary account",
-        5 : "Individual Savings Account",
-        6 : "Fixed deposit account",
-        7 : "Tax-Free Savings Account",
+        "Savings account": "Savings account",
+        "Investement account": "Investement account",
+        "Personal account": "Personal account",
+        "Solidary account": "Solidary account",
+        "Individual Savings Account": "Individual Savings Account",
+        "Fixed deposit account": "Fixed deposit account",
+        "Tax-Free Savings Account": "Tax-Free Savings Account",
     }
     $.each(selectValues, function (key, value) {
         $("select").append($('<option></option>').attr('value', key).text(value))
     })
 }
 
-$(function($){
+$(function ($) {
     $.datepicker.regional['ca'] = {
         closeText: 'Tancar',
         prevText: 'Prv',
         nextText: 'Seg;',
         currentText: 'Avui',
-        monthNames:['Gener','Febrer','Març','Abril','Maig','Juny','Juliol','Agost','Setembre','Octubre','Novembre','Desembre'],
-        monthNamesShort: ['Gen','Feb','Mar','Abr','Mai','Jun','Jul','Ago','Set','Oct','Nov','Des'],
-        dayNames: ['Diumenge','Dilluns','Dimarts','Dimecres','Dijous','Divendres','Dissabte'],
-        dayNamesShort: ['Dug','Dln','Dmt','Dmc','Djs','Dvn','Dsb'],
-        dayNamesMin: ['Dg','Dl','Dt','Dc','Dj','Dv','Ds'],
+        monthNames: ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre'],
+        monthNamesShort: ['Gen', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Des'],
+        dayNames: ['Diumenge', 'Dilluns', 'Dimarts', 'Dimecres', 'Dijous', 'Divendres', 'Dissabte'],
+        dayNamesShort: ['Dug', 'Dln', 'Dmt', 'Dmc', 'Djs', 'Dvn', 'Dsb'],
+        dayNamesMin: ['Dg', 'Dl', 'Dt', 'Dc', 'Dj', 'Dv', 'Ds'],
         weekHeader: 'Sm',
         dateFormat: 'dd/mm/yy',
         isRTL: false,
@@ -62,19 +62,29 @@ $(function($){
         yearSuffix: '',
         maxDate: 0
     };
-        
+
     $.datepicker.setDefaults($.datepicker.regional['ca']);
 });
 
 function fillForm() {
     $.get("http://127.0.0.1:3000/api/clients", function (data) {
-        console.log(data)
-        $("#clientDni").val(data.response[0].DNI)
-        $("#clientName").val(data.response[0].Name)
-        $("#accountType").val(data.response[0].accountType)
-        $("#amount").val(data.response[0].Amount)
-        $("#clientType").val(data.response[0].clientType)
-        $("#datapicker").val(data.response[0].entryDate)
-    } );
+        let clientDni = $(".clientDni")
+        let clientName=$(".clientName")
+        let accountType = $(".accountType option")
+        let amount = $(".amount")
+        let clientType = $(".clientType")
+        let i = 0
+        while(i < 10) {
+            console.log(accountType.val())
+            clientDni[i] = clientDni.val(data.response[i].DNI);
+            clientName[i] = clientName.val(data.response[i].Name);
+            if(accountType.val() === data.response[i].accountType) {
+                $(`option:${data.response[i].accountType}`).attr("selected", "selected");
+            }
+            amount[i] = amount.val(parseFloat(data.response[i].Amount));
+            clientType[i] = clientType.val(data.response[i].clientType);
+            i++
+        }
+    });
 
 }
