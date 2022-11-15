@@ -1,9 +1,30 @@
 $(document).ready(function () {
     createAccountTypesOptions()
-
+    $("#clientDni").focusout(() => {
+        validateDNI()
+    })
+    $("#clientName").focusout(() => {
+        validateName()
+    })
+    $("#amount").focusout(() => {
+        validateAmount()
+    })
     $(function() {
         $("#datepicker").datepicker();
+        $("#datepicker2").datepicker();
+        $("#datepicker3").datepicker();
+        $("#datepicker4").datepicker();
+        $("#datepicker5").datepicker();
+        $("#datepicker6").datepicker();
+        $("#datepicker7").datepicker();
+        $("#datepicker8").datepicker();
+        $("#datepicker9").datepicker();
+        $("#datepicker10").datepicker();
+
     })
+
+    fillForm()
+
 })
 
 function createAccountTypesOptions() {
@@ -21,24 +42,39 @@ function createAccountTypesOptions() {
     })
 }
 
-// $(function($){
-//     $.datepicker.regional['es'] = {
-//         closeText: 'Cerrar',
-//         prevText: '&#x3C;Ant',
-//         nextText: 'Sig&#x3E;',
-//         currentText: 'Hoy',
-//         monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
-//             'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-//         monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
-//             'Jul','Ago','Sep','Oct','Nov','Dic'],
-//         dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
-//         dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-//         dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
-//         weekHeader: 'Sm',
-//         dateFormat: 'dd/mm/yy',
-//         firstDay: 1,
-//         isRTL: false,
-//         showMonthAfterYear: false,
-//         yearSuffix: ''};
-//     $.datepicker.setDefaults($.datepicker.regional['es']);
-// });
+$(function($){
+    $.datepicker.regional['ca'] = {
+        closeText: 'Tancar',
+        prevText: 'Prv',
+        nextText: 'Seg;',
+        currentText: 'Avui',
+        monthNames:['Gener','Febrer','Març','Abril','Maig','Juny','Juliol','Agost','Setembre','Octubre','Novembre','Desembre'],
+        monthNamesShort: ['Gen','Feb','Mar','Abr','Mai','Jun','Jul','Ago','Set','Oct','Nov','Des'],
+        dayNames: ['Diumenge','Dilluns','Dimarts','Dimecres','Dijous','Divendres','Dissabte'],
+        dayNamesShort: ['Dug','Dln','Dmt','Dmc','Djs','Dvn','Dsb'],
+        dayNamesMin: ['Dg','Dl','Dt','Dc','Dj','Dv','Ds'],
+        weekHeader: 'Sm',
+        dateFormat: 'dd/mm/yy',
+        isRTL: false,
+        changeMonth: true,
+        changeYear: true,
+        showMonthAfterYear: false,
+        yearSuffix: '',
+        maxDate: 0
+    };
+        
+    $.datepicker.setDefaults($.datepicker.regional['ca']);
+});
+
+function fillForm() {
+    $.get("http://127.0.0.1:3000/api/clients", function (data) {
+        console.log(data)
+        $("#clientDni").val(data.response[0].DNI)
+        $("#clientName").val(data.response[0].Name)
+        $("#accountType").val(data.response[0].accountType)
+        $("#amount").val(data.response[0].Amount)
+        $("#clientType").val(data.response[0].clientType)
+        $("#datapicker").val(data.response[0].entryDate)
+    } );
+
+}
