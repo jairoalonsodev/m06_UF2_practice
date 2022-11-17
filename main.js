@@ -1,9 +1,11 @@
+//Declarem els Const
 'use strict'
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const mysql = require('mysql')
 const cors = require('cors')
+const path = require('path')
 
 // Declarem els paramtres de connexió
 let connection = mysql.createConnection(
@@ -19,6 +21,7 @@ let connection = mysql.createConnection(
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 app.use(cors())
+app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.get('/api/clients', (req, res) => {
     connection.connect((err) => {
@@ -37,6 +40,7 @@ app.get('/api/clients', (req, res) => {
         }
     })
 });
+
 
 app.listen(3000, () => {
     console.log("Aquesta és la nostra API-REST que corre en http://localhost:3000'")

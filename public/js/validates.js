@@ -1,3 +1,4 @@
+//Start Validator of DNI
 function validateDNI() {
     var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T']
     let dni = $("#clientDni").val()//coge el dni del input
@@ -12,8 +13,9 @@ function validateDNI() {
     }
 
 }
+//End Validator of DNI
 
-
+//Start Validator of Name
 function validateName() {
     let nombre = $("#clientName").val()
     let pattern = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ]/;
@@ -24,10 +26,9 @@ function validateName() {
         $("#clientName").css("border-color", "red")
     }
 }
+//End Validator of Name
 
-
-
-
+//Start Validator of Amount
 function validateAmount() {
     let amount = $("#amount").val()
     let pattern = /^\d+(\.\d{1,2})?$/;
@@ -38,3 +39,4 @@ function validateAmount() {
         $("#amount").css("border-color", "red")
     }
 }
+//End Validator of Amount

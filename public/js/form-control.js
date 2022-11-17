@@ -1,48 +1,61 @@
+//Start of Form-Control function
 $(document).ready(function () {
+    // Select all inputs from datepicker class
+    const datePicker = $(".datepicker")
+
+    //Create the Option labels of Account Types selects
     createAccountTypesOptions()
+
+    //Execute validator function of DNI
     $("#clientDni").focusout(() => {
         validateDNI()
     })
+    
+    //Execute validator function of Name
     $("#clientName").focusout(() => {
         validateName()
     })
+
+    //Execute validator function of Amount
     $("#amount").focusout(() => {
         validateAmount()
     })
+    
+    //Function start DataPicker
     $(function () {
-        $("#datepicker").datepicker();
-        $("#datepicker2").datepicker();
-        $("#datepicker3").datepicker();
-        $("#datepicker4").datepicker();
-        $("#datepicker5").datepicker();
-        $("#datepicker6").datepicker();
-        $("#datepicker7").datepicker();
-        $("#datepicker8").datepicker();
-        $("#datepicker9").datepicker();
-        $("#datepicker10").datepicker();
-
+        let i = 0
+        while (i < 10) {
+            datePicker.datepicker();
+            i++
+        }
     })
 
+    //Execute the function that fills form values from the database
     fillForm()
 
 })
+//End of Form-Control function
 
+//Start the Creator of accounts
 function createAccountTypesOptions() {
     var selectValues = {
-        "Savings account": "Savings account",
-        "Investement account": "Investement account",
-        "Personal account": "Personal account",
-        "Solidary account": "Solidary account",
-        "Individual Savings Account": "Individual Savings Account",
-        "Fixed deposit account": "Fixed deposit account",
-        "Tax-Free Savings Account": "Tax-Free Savings Account",
+        0: "Savings account",
+        1: "Investment account",
+        2: "Personal account",
+        3: "Solidary account",
+        4: "Individual Savings Account",
+        5: "Fixed deposit account",
+        6: "Tax-Free Savings Account",
     }
     $.each(selectValues, function (key, value) {
-        $("select").append($('<option></option>').attr('value', key).text(value))
+        $("select").append($('<option></option>').attr("value", key).text(value))
     })
 }
+//End the Creator of accounts
 
+//Start the Datepicker
 $(function ($) {
+    //Function that we execute for the data picker, and put it in catalan
     $.datepicker.regional['ca'] = {
         closeText: 'Tancar',
         prevText: 'Prv',
@@ -65,26 +78,37 @@ $(function ($) {
 
     $.datepicker.setDefaults($.datepicker.regional['ca']);
 });
+//End the Datepicker
 
+//Start Filling the form
 function fillForm() {
     $.get("http://127.0.0.1:3000/api/clients", function (data) {
+        console.log(data)
         let clientDni = $(".clientDni")
-        let clientName=$(".clientName")
-        let accountType = $(".accountType option")
+        let clientName = $(".clientName")
+        let accountTypes = $("select")
         let amount = $(".amount")
         let clientType = $(".clientType")
+        let datePicker = $(".datepicker")
+        let client
+        console.log(datePicker)
         let i = 0
-        while(i < 10) {
-            console.log(accountType.val())
-            clientDni[i] = clientDni.val(data.response[i].DNI);
-            clientName[i] = clientName.val(data.response[i].Name);
-            if(accountType.val() === data.response[i].accountType) {
-                $(`option:${data.response[i].accountType}`).attr("selected", "selected");
-            }
-            amount[i] = amount.val(parseFloat(data.response[i].Amount));
-            clientType[i] = clientType.val(data.response[i].clientType);
+        while (i < 10) {
+            let typeAccount = new AccountType(data.response[i].accountType)
+            let typeClient = new ClientType(data.response[i].clientType)
+            client = new Account(data.response[i].Id, typeAccount.type, typeClient.type, data.response[i].Name, data.response[i].DNI, data.
+            response[i].Amount, data.response[i].entryDate)
+
+            const selectedOption = $(accountTypes[i])
+            
+            clientDni[i] = clientDni.val(client.DNIClient);
+            clientName[i] = clientName.val(client.fullNameClient);
+            selectedOption.val(client.accountType)
+            amount[i] = amount.val(`${parseFloat(client.amount)} €`);
+            clientType[i] = clientType.val(client.clientType);
+            datePicker[i] = datePicker.val(client.entryDate)
             i++
         }
     });
-
 }
+//End the Fill Form

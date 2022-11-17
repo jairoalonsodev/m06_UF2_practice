@@ -11,137 +11,164 @@
     <link rel="icon" type="image/x-icon" href="./img/icon.ico">
 
     <!--Bootstrap & Css-->
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="./css/styles.css">
 
     <!--JQuery-->
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <!--JavaScripts-->
-    <script src="./js/form-control.js"></script>
+
     <script src="./js/validates.js"></script>
-    <script src="./js/accountObj.js"></script>
     <script src="./js/accountTypeObj.js"></script>
     <script src="./js/clientTypeObj.js"></script>
+    <script src="./js/accountObj.js"></script>
+    <script src="./js/form-control.js"></script>
 
 </head>
 
 <body>
+
+    <!--Title-->
     <h1 class="display-2">These are the accounts of your banks</h1>
     <h1 class="display-4">Accounts:</h1>
-    <form>
-        <div class="container">
-            <div class="row">
-                <div class="form-group col-2">
-                    <label for="exampleInputEmail1" id="dni">DNI</label>
-                    <input type="text" class="form-control clientDni" placeholder="00000000A">
-                    <input type="text" class="form-control clientDni" placeholder="00000000A">
-                    <input type="text" class="form-control clientDni" placeholder="00000000A">
-                    <input type="text" class="form-control clientDni" placeholder="00000000A">
-                    <input type="text" class="form-control clientDni" placeholder="00000000A">
-                    <input type="text" class="form-control clientDni" placeholder="00000000A">
-                    <input type="text" class="form-control clientDni" placeholder="00000000A">
-                    <input type="text" class="form-control clientDni" placeholder="00000000A">
-                    <input type="text" class="form-control clientDni" placeholder="00000000A">
-                    <input type="text" class="form-control clientDni" placeholder="00000000A">
-                </div>
-                <div class="form-group col-2" id="name">
-                    <label for="exampleInputEmail1">Name</label>
-                    <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
-                    <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
-                    <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
-                    <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
-                    <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
-                    <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
-                    <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
-                    <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
-                    <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
-                    <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
-                </div>
-                <div class="form-group col-2">
-                    <label for="exampleInputEmail1">Account type</label><br>
-                    <select class="form-control accountType">
-
-                    </select>
-                    <select class="form-control accountType">
-
-                    </select>
-                    <select class="form-control accountType">
-
-                    </select>
-                    <select class="form-control accountType">
-
-                    </select>
-                    <select class="form-control accountType">
-
-                    </select>
-                    <select class="form-control accountType">
-
-                    </select>
-                    <select class="form-control accountType">
-
-                    </select>
-                    <select class="form-control accountType">
-
-                    </select>
-                    <select class="form-control accountType">
-
-                    </select>
-                    <select class="form-control accountType">
-
-                    </select>
-
-                </div>
-                <div class="form-group col-2">
-                    <label for="exampleInputEmail1">Amount</label>
-                    <input type="number" class="form-control amount" placeholder="Euros€">
-                    <input type="number" class="form-control amount" placeholder="Euros€">
-                    <input type="number" class="form-control amount" placeholder="Euros€">
-                    <input type="number" class="form-control amount" placeholder="Euros€">
-                    <input type="number" class="form-control amount" placeholder="Euros€">
-                    <input type="number" class="form-control amount" placeholder="Euros€">
-                    <input type="number" class="form-control amount" placeholder="Euros€">
-                    <input type="number" class="form-control amount" placeholder="Euros€">
-                    <input type="number" class="form-control amount" placeholder="Euros€">
-                    <input type="number" class="form-control amount" placeholder="Euros€">
-                </div>
-                <div class="form-group col-2">
-                    <label for="exampleInputEmail1">Client type</label>
-                    <input type="text" class="form-control clientType" placeholder="Type Client">
-                    <input type="text" class="form-control clientType" placeholder="Type Client">
-                    <input type="text" class="form-control clientType" placeholder="Type Client">
-                    <input type="text" class="form-control clientType" placeholder="Type Client">
-                    <input type="text" class="form-control clientType" placeholder="Type Client">
-                    <input type="text" class="form-control clientType" placeholder="Type Client">
-                    <input type="text" class="form-control clientType" placeholder="Type Client">
-                    <input type="text" class="form-control clientType" placeholder="Type Client">
-                    <input type="text" class="form-control clientType" placeholder="Type Client">
-                    <input type="text" class="form-control clientType" placeholder="Type Client">
-                </div>
-                <div class="form-group col-2">
-                    <label for="exampleInputEmail1">Entry date</label>
-                    <input type="text" class="form-control" id="datepicker" placeholder="00/00/0000">
-                    <input type="text" class="form-control" id="datepicker2" placeholder="00/00/0000">
-                    <input type="text" class="form-control" id="datepicker3" placeholder="00/00/0000">
-                    <input type="text" class="form-control" id="datepicker4" placeholder="00/00/0000">
-                    <input type="text" class="form-control" id="datepicker5" placeholder="00/00/0000">
-                    <input type="text" class="form-control" id="datepicker6" placeholder="00/00/0000">
-                    <input type="text" class="form-control" id="datepicker7" placeholder="00/00/0000">
-                    <input type="text" class="form-control" id="datepicker8" placeholder="00/00/0000">
-                    <input type="text" class="form-control" id="datepicker9" placeholder="00/00/0000">
-                    <input type="text" class="form-control" id="datepicker10" placeholder="00/00/0000">
-                </div>
+    <!--Start Form-->
+    <form class="myForm">
+        <!--Start Row Form-->
+        <div class="row">
+            <!--Start Table DNI-->
+            <div class="form-group col-2">
+                <label for="exampleInputEmail1" id="dni">DNI</label>
+                <input type="text" class="form-control clientDni" placeholder="00000000A">
+                <input type="text" class="form-control clientDni" placeholder="00000000A">
+                <input type="text" class="form-control clientDni" placeholder="00000000A">
+                <input type="text" class="form-control clientDni" placeholder="00000000A">
+                <input type="text" class="form-control clientDni" placeholder="00000000A">
+                <input type="text" class="form-control clientDni" placeholder="00000000A">
+                <input type="text" class="form-control clientDni" placeholder="00000000A">
+                <input type="text" class="form-control clientDni" placeholder="00000000A">
+                <input type="text" class="form-control clientDni" placeholder="00000000A">
+                <input type="text" class="form-control clientDni" placeholder="00000000A">
             </div>
-            <div class="row">
-                <button type="button" class="btn btn-success" id="button">Modify accounts</button>
+            <!--End Table DNI-->
+            
+            <!--Start Table Name & SurNames-->
+            <div class="form-group col-2" id="name">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
+                <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
+                <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
+                <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
+                <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
+                <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
+                <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
+                <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
+                <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
+                <input type="text" class="form-control clientName" placeholder="Name" maxlength="30">
             </div>
+            <!--End Table Name & SurNames-->
+
+            <!--Start Table Account Types-->
+            <div class="form-group col-2">
+                <label for="exampleInputEmail1">Account type</label><br>
+                <select class="form-control accountType">
+
+                </select>
+                <select class="form-control accountType">
+
+                </select>
+                <select class="form-control accountType">
+
+                </select>
+                <select class="form-control accountType">
+
+                </select>
+                <select class="form-control accountType">
+
+                </select>
+                <select class="form-control accountType">
+
+                </select>
+                <select class="form-control accountType">
+
+                </select>
+                <select class="form-control accountType">
+
+                </select>
+                <select class="form-control accountType">
+
+                </select>
+                <select class="form-control accountType">
+
+                </select>
+
+            </div>
+            <!--End Table Account Types-->
+
+            <!--Start Table Amount-->
+            <div class="form-group col-2">
+                <label for="exampleInputEmail1">Amount</label>
+                <input type="text" class="form-control amount" placeholder="Euros€">
+                <input type="text" class="form-control amount" placeholder="Euros€">
+                <input type="text" class="form-control amount" placeholder="Euros€">
+                <input type="text" class="form-control amount" placeholder="Euros€">
+                <input type="text" class="form-control amount" placeholder="Euros€">
+                <input type="text" class="form-control amount" placeholder="Euros€">
+                <input type="text" class="form-control amount" placeholder="Euros€">
+                <input type="text" class="form-control amount" placeholder="Euros€">
+                <input type="text" class="form-control amount" placeholder="Euros€">
+                <input type="text" class="form-control amount" placeholder="Euros€">
+            </div>
+            <!--End Table Amount-->
+
+            <!--Start Table Client Types-->
+            <div class="form-group col-2">
+                <label for="exampleInputEmail1">Client type</label>
+                <input type="text" class="form-control clientType" placeholder="Type Client">
+                <input type="text" class="form-control clientType" placeholder="Type Client">
+                <input type="text" class="form-control clientType" placeholder="Type Client">
+                <input type="text" class="form-control clientType" placeholder="Type Client">
+                <input type="text" class="form-control clientType" placeholder="Type Client">
+                <input type="text" class="form-control clientType" placeholder="Type Client">
+                <input type="text" class="form-control clientType" placeholder="Type Client">
+                <input type="text" class="form-control clientType" placeholder="Type Client">
+                <input type="text" class="form-control clientType" placeholder="Type Client">
+                <input type="text" class="form-control clientType" placeholder="Type Client">
+            </div>
+            <!--End Table Client Types-->
+
+            <!--Start Table Entry Dates-->
+            <div class="form-group col-2">
+                <label for="exampleInputEmail1">Entry date</label>
+                <input type="text" class="form-control datepicker" placeholder="00/00/0000">
+                <input type="text" class="form-control datepicker" placeholder="00/00/0000">
+                <input type="text" class="form-control datepicker" placeholder="00/00/0000">
+                <input type="text" class="form-control datepicker" placeholder="00/00/0000">
+                <input type="text" class="form-control datepicker" placeholder="00/00/0000">
+                <input type="text" class="form-control datepicker" placeholder="00/00/0000">
+                <input type="text" class="form-control datepicker" placeholder="00/00/0000">
+                <input type="text" class="form-control datepicker" placeholder="00/00/0000">
+                <input type="text" class="form-control datepicker" placeholder="00/00/0000">
+                <input type="text" class="form-control datepicker" placeholder="00/00/0000">
+            </div>
+            <!--End Table Entry Dates-->
         </div>
+        <!--End Row Form-->
+
+        <!--Start Row Button-->
+        <div class="row">
+            <button type="button" class="btn btn-success modify" id="button">Modify accounts</button>
+        </div>
+        <!--End Row Button-->
 
     </form>
-
+    <!--End Form-->
 
     <!--Jquery scripts CDN-->
 
