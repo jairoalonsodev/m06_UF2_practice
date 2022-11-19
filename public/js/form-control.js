@@ -7,17 +7,17 @@ $(document).ready(function () {
     createAccountTypesOptions()
 
     //Execute validator function of DNI
-    $("#clientDni").focusout(() => {
+    $(".clientDni").focusout(() => {
         validateDNI()
     })
     
     //Execute validator function of Name
-    $("#clientName").focusout(() => {
+    $(".clientName").focusout(() => {
         validateName()
     })
 
     //Execute validator function of Amount
-    $("#amount").focusout(() => {
+    $(".amount").focusout(() => {
         validateAmount()
     })
     
@@ -83,7 +83,7 @@ $(function ($) {
 //Start Filling the form
 function fillForm() {
     $.get("http://127.0.0.1:3000/api/clients", function (data) {
-        console.log(data)
+
         let clientDni = $(".clientDni")
         let clientName = $(".clientName")
         let accountTypes = $("select")
@@ -91,12 +91,14 @@ function fillForm() {
         let clientType = $(".clientType")
         let datePicker = $(".datepicker")
         let client
-        console.log(datePicker)
         let i = 0
+    
         while (i < 10) {
             let typeAccount = new AccountType(data.response[i].accountType)
             let typeClient = new ClientType(data.response[i].clientType)
-            client = new Account(data.response[i].Id, typeAccount.type, typeClient.type, data.response[i].Name, data.response[i].DNI, data.
+            
+            client = new Account(data.response[i].Id, typeAccount.type, typeClient.type, data.
+            response[i].Name, data.response[i].DNI, data.
             response[i].Amount, data.response[i].entryDate)
 
             const selectedOption = $(accountTypes[i])

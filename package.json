@@ -1,7 +1,7 @@
 {
   "name": "m06_uf2_practice",
   "version": "1.0.0",
-  "description": "",
+  "description": "Bank administration web",
   "main": "./src/js/main.js",
   "scripts": {
     "start": "nodemon main.js",
