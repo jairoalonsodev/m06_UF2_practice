@@ -10,7 +10,7 @@ $(document).ready(function () {
     $(".clientDni").focusout(() => {
         validateDNI()
     })
-    
+
     //Execute Name validator function
     $(".clientName").focusout(() => {
         validateName()
@@ -19,14 +19,11 @@ $(document).ready(function () {
     //Execute Amount validator function 
     $(".amount").focusout(() => {
         validateAmount()
-    })
-    
-    $(".clientType").focusout(() => {
         validateClientType()
     })
 
     $("#button").click(() => {
-        
+        sendDataToServer()
     })
 
     //Function start DataPicker
@@ -40,9 +37,8 @@ $(document).ready(function () {
 
     //Execute the function that fills form values from the database
     formControl()
-    
-
 })
+
 //End of Form-Control function
 
 //Start the Accounts Creator
@@ -75,19 +71,17 @@ function formControl() {
         let client
         let clients = []
         let i = 0
-    
-        while (i < 10) {$.get("http://127.0.0.1:3000/api/clients", function (data) {
-            
-        })
+
+        while (i < 10) {
             let typeAccount = new AccountType(data.response[i].accountType)
             let typeClient = new ClientType(data.response[i].clientType)
-            
+
             client = new Account(data.response[i].Id, typeAccount.type, typeClient.type, data.
-            response[i].Name, data.response[i].DNI, data.
-            response[i].Amount, data.response[i].entryDate)
+                response[i].Name, data.response[i].DNI, data.
+                    response[i].Amount, data.response[i].entryDate)
             clients.push(client)
             const selectedOption = $(accountTypes[i])
-            
+
             clientDni[i] = clientDni.val(client.DNIClient);
             clientName[i] = clientName.val(client.fullNameClient);
             selectedOption.val(client.accountType)
@@ -101,6 +95,43 @@ function formControl() {
 }
 //End form control function
 
+
+// Function to send data to server
 function sendDataToServer() {
-    
+    let clientDni = $(".clientDni")
+    let clientName = $(".clientName")
+    let accountTypes = $("select")
+    let amount = $(".amount")
+    let clientType = $(".clientType")
+    let datePicker = $(".datepicker")
+    let client
+    for (i = 0; i < 10; i++) {
+        client = {
+            id: i,
+            dni: $(clientDni[i]).val(),
+            name: $(clientName[i]).val(),
+            accountType: $(accountTypes[i]).val(),
+            amount: $(amount[i]).val().substring(0, $(amount[i]).val().length - 2),
+            clientType: $(clientType[i]).val(),
+            entryDate: $(datePicker[i]).val()
+        }
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:3000',
+            data: client,
+            success: function () {
+                
+            }
+        });
+    }
+    loadingMessage()
+}
+
+// show loading message function
+function loadingMessage() {
+    $("#mainForm").hide(3000)
+    $(".loading").show(2000)
+    $(".loading").hide(5000)
+    $("#mainForm").show(3000)
+    location.reload()
 }

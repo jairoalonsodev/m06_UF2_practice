@@ -21,6 +21,10 @@ SET time_zone = "+00:00";
 -- Database: `bankData`
 --
 
+CREATE DATABASE IF NOT EXISTS bankData;
+
+use bankData;
+
 -- --------------------------------------------------------
 
 --
@@ -43,13 +47,13 @@ CREATE TABLE `clients` (
 
 INSERT INTO `clients` (`Id`, `DNI`, `Name`, `accountType`, `Amount`, `clientType`, `entryDate`) VALUES
 (0, '53319344P', 'Joel Comes Rodríguez', 2, '243584.25', 'Very rich client', '18/11/2022'),
-(1, '53324889X', 'Jairo Alonso Juárez', 2, '255524.27', 'Very rich client', '31/11/2022'),
+(1, '53324889X', 'Jairo Alonso Juárez', 2, '255524.27', 'Very rich client', '20/11/2022'),
 (2, '62718242W', 'Bernarda del Gargallo Almazón', 6, '71251.57', 'Normal client', '05/11/2022'),
 (3, '97425003Q', 'Odalis Florentina Julián Torrijos', 5, '1256.45', 'Poor client', '17/11/2022'),
-(4, '74971900L', 'Diego Belda Salazar', 4, '456.48', 'Poor client', '29/11/2022'),
+(4, '74971900L', 'Diego Belda Salazar', 4, '456.48', 'Poor client', '15/11/2022'),
 (5, '13763888K', 'Emelina Arnal Luque', 3, '12645.49', 'Normal client', '13/11/2022'),
 (6, '71150982E', 'Socorro Torrecilla Alvarez', 1, '123456.78', 'Very rich client', '21/11/2022'),
-(7, '17786485X', 'Sol Escudero Recuero', 1, '987654.32', 'Very rich client', '30/11/2022'),
+(7, '17786485X', 'Sol Escudero Recuero', 1, '987654.32', 'Very rich client', '10/11/2022'),
 (8, '40677246K', 'Íngrid Melero Guardia', 0, '11753.59', 'Normal client', '01/11/2022'),
 (9, '09964878J', 'Jimena Febe Pazos Torrecilla', 2, '51121.21', 'Normal client', '21/11/2022');
 
