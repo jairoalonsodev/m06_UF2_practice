@@ -1,5 +1,4 @@
-//Declarem els Const
-'use strict'
+//Declare Const
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
@@ -7,7 +6,7 @@ const mysql = require('mysql')
 const cors = require('cors')
 const path = require('path')
 
-// Declarem els paramtres de connexió
+// We declare the parameters of connection
 let connection = mysql.createConnection(
     {
         host:'127.0.0.1',

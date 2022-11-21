@@ -6,21 +6,29 @@ $(document).ready(function () {
     //Create the Option labels of Account Types selects
     createAccountTypesOptions()
 
-    //Execute validator function of DNI
+    //Execute DNI validator function
     $(".clientDni").focusout(() => {
         validateDNI()
     })
     
-    //Execute validator function of Name
+    //Execute Name validator function
     $(".clientName").focusout(() => {
         validateName()
     })
 
-    //Execute validator function of Amount
+    //Execute Amount validator function 
     $(".amount").focusout(() => {
         validateAmount()
     })
     
+    $(".clientType").focusout(() => {
+        validateClientType()
+    })
+
+    $("#button").click(() => {
+        
+    })
+
     //Function start DataPicker
     $(function () {
         let i = 0
@@ -31,12 +39,13 @@ $(document).ready(function () {
     })
 
     //Execute the function that fills form values from the database
-    fillForm()
+    formControl()
+    
 
 })
 //End of Form-Control function
 
-//Start the Creator of accounts
+//Start the Accounts Creator
 function createAccountTypesOptions() {
     var selectValues = {
         0: "Savings account",
@@ -51,37 +60,10 @@ function createAccountTypesOptions() {
         $("select").append($('<option></option>').attr("value", key).text(value))
     })
 }
-//End the Creator of accounts
+//End the Accounts Creator 
 
-//Start the Datepicker
-$(function ($) {
-    //Function that we execute for the data picker, and put it in catalan
-    $.datepicker.regional['ca'] = {
-        closeText: 'Tancar',
-        prevText: 'Prv',
-        nextText: 'Seg;',
-        currentText: 'Avui',
-        monthNames: ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre'],
-        monthNamesShort: ['Gen', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Des'],
-        dayNames: ['Diumenge', 'Dilluns', 'Dimarts', 'Dimecres', 'Dijous', 'Divendres', 'Dissabte'],
-        dayNamesShort: ['Dug', 'Dln', 'Dmt', 'Dmc', 'Djs', 'Dvn', 'Dsb'],
-        dayNamesMin: ['Dg', 'Dl', 'Dt', 'Dc', 'Dj', 'Dv', 'Ds'],
-        weekHeader: 'Sm',
-        dateFormat: 'dd/mm/yy',
-        isRTL: false,
-        changeMonth: true,
-        changeYear: true,
-        showMonthAfterYear: false,
-        yearSuffix: '',
-        maxDate: 0
-    };
-
-    $.datepicker.setDefaults($.datepicker.regional['ca']);
-});
-//End the Datepicker
-
-//Start Filling the form
-function fillForm() {
+//Start form control function
+function formControl() {
     $.get("http://127.0.0.1:3000/api/clients", function (data) {
 
         let clientDni = $(".clientDni")
@@ -91,16 +73,19 @@ function fillForm() {
         let clientType = $(".clientType")
         let datePicker = $(".datepicker")
         let client
+        let clients = []
         let i = 0
     
-        while (i < 10) {
+        while (i < 10) {$.get("http://127.0.0.1:3000/api/clients", function (data) {
+            
+        })
             let typeAccount = new AccountType(data.response[i].accountType)
             let typeClient = new ClientType(data.response[i].clientType)
             
             client = new Account(data.response[i].Id, typeAccount.type, typeClient.type, data.
             response[i].Name, data.response[i].DNI, data.
             response[i].Amount, data.response[i].entryDate)
-
+            clients.push(client)
             const selectedOption = $(accountTypes[i])
             
             clientDni[i] = clientDni.val(client.DNIClient);
@@ -111,6 +96,11 @@ function fillForm() {
             datePicker[i] = datePicker.val(client.entryDate)
             i++
         }
+        saveAccountObj(clients)
     });
 }
-//End the Fill Form
+//End form control function
+
+function sendDataToServer() {
+    
+}

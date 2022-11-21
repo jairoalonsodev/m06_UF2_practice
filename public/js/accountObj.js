@@ -68,5 +68,17 @@ class Account {
                 this.#entryDate = entryDate;
         }
         //End of constructor
+
+        toJSON() {
+                return {
+                        id : this.#id,
+                        dni : this.#DNIClient,
+                        name : this.#fullNameClient,
+                        account : this.#accountType,
+                        amount  : this.#amount,
+                        client: this.#clientType,
+                        entryDate : this.#entryDate
+                }
+        }
 }
 //End of Class Amount
